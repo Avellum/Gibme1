@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <!-- Navbar Placeholder -->
+    <div id="navbar-placeholder"></div>
+
+    <div class="container mt-5">
+        <h1>Checkout</h1>
+
+        <!-- Order Summary Section -->
+        <h3 class="mt-4">Order Summary</h3>
+        <div id="order-summary-section">
+            <!-- Order items and total will be dynamically loaded here -->
+        </div>
+
+        <!-- Shipping and Billing Section -->
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Select Shipping Address</h3>
+                <div id="shipping-address-section">
+                    <!-- Saved shipping addresses will be loaded here -->
+                </div>
+                <h4>Or Enter a New Shipping Address</h4>
+                <form id="shipping-address-form">
+                    <div class="form-group">
+                        <label for="shipping_address_line1">Address Line 1</label>
+                        <input type="text" class="form-control" id="shipping_address_line1" name="shipping_address_line1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="shipping_address_line2">Address Line 2</label>
+                        <input type="text" class="form-control" id="shipping_address_line2" name="shipping_address_line2">
+                    </div>
+                    <div class="form-group">
+                        <label for="shipping_city">City</label>
+                        <input type="text" class="form-control" id="shipping_city" name="shipping_city" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="shipping_state">State</label>
+                        <input type="text" class="form-control" id="shipping_state" name="shipping_state" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="shipping_postal_code">Postal Code</label>
+                        <input type="text" class="form-control" id="shipping_postal_code" name="shipping_postal_code" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="shipping_country">Country</label>
+                        <input type="text" class="form-control" id="shipping_country" name="shipping_country" required>
+                    </div>
+                </form>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="same-as-shipping">
+                    <label class="form-check-label" for="same-as-shipping">Billing address same as shipping</label>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <h3>Select Billing Address</h3>
+                <div id="billing-address-section">
+                    <!-- Saved billing addresses will be loaded here -->
+                </div>
+                <h4>Or Enter a New Billing Address</h4>
+                <form id="billing-address-form">
+                    <div class="form-group">
+                        <label for="billing_address_line1">Address Line 1</label>
+                        <input type="text" class="form-control" id="billing_address_line1" name="billing_address_line1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="billing_address_line2">Address Line 2</label>
+                        <input type="text" class="form-control" id="billing_address_line2" name="billing_address_line2">
+                    </div>
+                    <div class="form-group">
+                        <label for="billing_city">City</label>
+                        <input type="text" class="form-control" id="billing_city" name="billing_city" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="billing_state">State</label>
+                        <input type="text" class="form-control" id="billing_state" name="billing_state" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="billing_postal_code">Postal Code</label>
+                        <input type="text" class="form-control" id="billing_postal_code" name="billing_postal_code" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="billing_country">Country</label>
+                        <input type="text" class="form-control" id="billing_country" name="billing_country" required>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Payment Method Section -->
+        <h3 class="mt-4">Payment Method</h3>
+        <div id="payment-method-section">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="paymentMethod" id="creditCard" value="creditCard" checked>
+                <label class="form-check-label" for="creditCard">Credit Card</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="paymentMethod" id="paypal" value="paypal">
+                <label class="form-check-label" for="paypal">PayPal</label>
+            </div>
+            <!-- You can add more payment options here -->
+        </div>
+
+        <!-- Place Order Button -->
+        <button id="place-order-btn" class="btn btn-primary mt-4">Place Order</button>
+    </div>
+
+    <!-- Script Dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/js/search.js"></script>
+    <script src="/js/navbar.js"></script>
+    <script src="/js/cart.js"></script>
+    <script src="/js/checkout.js"></script>
+</body>
+</html>

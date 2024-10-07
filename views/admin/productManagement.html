@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management</title>
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Link to your main CSS file -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/admin/dashboard">Admin Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/admin/dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/productmanagement">Product Management</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/orders">Order Management</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/customers">Customer Management</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/settings">Settings</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1>Product Management</h1>
+        <ul class="nav nav-tabs" id="productManagementTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="add-product-tab" data-bs-toggle="tab" data-bs-target="#add-product"
+                    type="button" role="tab">Add Product</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="edit-product-tab" data-bs-toggle="tab" data-bs-target="#edit-product"
+                    type="button" role="tab">Edit Product</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="remove-product-tab" data-bs-toggle="tab" data-bs-target="#remove-product"
+                    type="button" role="tab">Remove Product</button>
+            </li>
+            <!-- Add more tabs for images, variations, attributes -->
+        </ul>
+        <div class="tab-content mt-3" id="productManagementTabsContent">
+            <div class="tab-pane fade show active" id="add-product" role="tabpanel">
+                <h2>Add New Product</h2>
+                <form action="/admin/product/add" method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="product-name" class="form-label">Product Name</label>
+                        <input type="text" class="form-control" id="product-name" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="product-sku" class="form-label">SKU</label>
+                        <input type="text" class="form-control" id="product-sku" name="sku" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="product-description" class="form-label">Product Description</label>
+                        <textarea class="form-control" id="product-description" name="description" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="product-price" class="form-label">Product Price</label>
+                        <input type="number" step="0.01" class="form-control" id="product-price" name="price" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="product-stock" class="form-label">Stock</label>
+                        <input type="number" class="form-control" id="product-stock" name="stock" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="product-category" class="form-label">Category</label>
+                        <select class="form-control" id="product-category" name="category_id" required>
+                            <!-- Categories will be populated here via JavaScript -->
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="product-image" class="form-label">Main Image</label>
+                        <input type="file" class="form-control" id="product-image" name="main_image">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Product</button>
+                </form>
+            </div>
+
+            <div class="tab-pane fade" id="edit-product" role="tabpanel">
+                <h2>Edit Product</h2>
+                <form id="edit-product-form" action="/admin/product/edit" method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="product-search" class="form-label">Search Product by Name, ID, or SKU</label>
+                        <input type="text" class="form-control" id="product-search"
+                            placeholder="Enter product name, ID, or SKU">
+                    </div>
+                    <div class="list-group" id="search-results">
+                        <!-- Search results will appear here -->
+                    </div>
+                    <div id="product-details" class="mt-3">
+                        <!-- Product details will be displayed here -->
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <label for="product-id" class="form-label">Product ID</label>
+                        <input type="number" class="form-control" id="product-id" name="id" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="product-name" class="form-label">Product Name</label>
+                        <input type="text" class="form-control" id="product-name" name="name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="product-sku" class="form-label">SKU</label>
+                        <input type="text" class="form-control" id="product-sku" name="sku">
+                    </div>
+                    <div class="mb-3">
+                        <label for="product-description" class="form-label">Product Description</label>
+                        <textarea class="form-control" id="product-description" name="description"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="product-price" class="form-label">Product Price</label>
+                        <input type="number" step="0.01" class="form-control" id="product-price" name="price">
+                    </div>
+                    <div class="mb-3">
+                        <label for="product-stock" class="form-label">Stock</label>
+                        <input type="number" class="form-control" id="product-stock" name="stock">
+                    </div>
+                    <div class="mb-3">
+                        <label for="product-category" class="form-label">Category ID</label>
+                        <input type="number" class="form-control" id="product-category" name="category_id">
+                    </div>
+                    <div class="mb-3">
+                        <label for="product-image" class="form-label">Main Image</label>
+                        <input type="file" class="form-control" id="product-image" name="main_image">
+                    </div>
+                    <div id="additional-images" class="mb-3">
+                        <!-- Additional images will be displayed here -->
+                    </div>
+                    <button type="submit" class="btn btn-primary">Edit Product</button>
+                </form>
+            </div>
+
+            <div class="tab-pane fade" id="remove-product" role="tabpanel">
+        <h2>Remove Product</h2>
+        <form id="remove-product-form" action="/admin/product/delete" method="POST">
+            <div class="mb-3">
+                <label for="product-search-remove" class="form-label">Search Product by Name, ID, or SKU</label>
+                <input type="text" class="form-control" id="product-search-remove" placeholder="Enter product name, ID, or SKU">
+            </div>
+            <div class="list-group" id="search-results-remove">
+                <!-- Search results will appear here -->
+            </div>
+            <div id="product-details-remove" class="mt-3">
+                <!-- Product details will be displayed here -->
+            </div>
+            <div class="mb-3 mt-3">
+                <label for="product-id-delete" class="form-label">Product ID</label>
+                <input type="number" class="form-control" id="product-id-delete" name="id" readonly required>
+            </div>
+            <button type="submit" class="btn btn-danger" onclick="return confirmDelete()">Remove Product</button>
+        </form>
+    </div>
+
+            <!-- Add more sections for managing images, variations, attributes -->
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/admin/productManagement.js"></script> <!-- Link to external JS file -->
+</body>
+
+</html>

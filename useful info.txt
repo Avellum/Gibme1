@@ -1,0 +1,4 @@
+useful info
+
+google client id - 710184003463-9its9jt456lrd4qhss1b5sq2adlq988m.apps.googleusercontent.com
+google client secret - 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
